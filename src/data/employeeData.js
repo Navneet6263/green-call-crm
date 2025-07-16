@@ -10,6 +10,16 @@ export const employees = [
     performanceRating: 4,
     adminRemarks: 'Excellent performance this month'
   },
+    {
+    id: 'EMP006',
+    name: 'Navneen Kumar',
+    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
+    department: 'IT',
+    position: 'Software Developer',
+    baseSalary: 50000,
+    performanceRating: 4,
+    adminRemarks: 'Excellent performance this month'
+  },
   {
     id: 'EMP002',
     name: 'Priya Sharma',
