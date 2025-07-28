@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { showToast } from './ToastNotification';
 
+
 const CommunicationHub = ({ darkMode, lead, onClose }) => {
   const [activeTab, setActiveTab] = useState('call');
   const [emailTemplate, setEmailTemplate] = useState('');
@@ -430,18 +431,18 @@ Green Call Solutions`
                   color: darkMode ? 'white' : '#1f2937',
                   marginBottom: '0.5rem'
                 }}>
-                  WhatsApp Message
+                  Custom Message
                 </label>
                 <textarea
                   value={customMessage}
                   onChange={(e) => setCustomMessage(e.target.value)}
                   placeholder={`Hi ${lead?.contactPerson}, this is regarding your inquiry about our CRM solutions...`}
-                  rows="6"
+                  rows={4}
                   style={{
                     width: '100%',
-                    padding: '1rem',
+                    padding: '0.75rem',
                     border: `2px solid ${darkMode ? '#374151' : '#e5e7eb'}`,
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     background: darkMode ? '#374151' : 'white',
                     color: darkMode ? 'white' : '#1f2937',
                     fontSize: '1rem',
@@ -449,13 +450,12 @@ Green Call Solutions`
                   }}
                 />
               </div>
-
               <button
                 onClick={handleWhatsApp}
                 style={{
                   width: '100%',
                   padding: '1rem',
-                  background: 'linear-gradient(135deg, #25d366, #128c7e)',
+                  background: 'linear-gradient(135deg, #22c55e, #4ade80)',
                   color: 'white',
                   border: 'none',
                   borderRadius: '12px',

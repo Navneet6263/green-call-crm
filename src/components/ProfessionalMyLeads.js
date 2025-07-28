@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { 
   User, 
   Search, 
@@ -23,6 +24,8 @@ const ProfessionalMyLeads = ({ darkMode, crmData, user }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [priorityFilter, setPriorityFilter] = useState('all');
+  const [selectedLead, setSelectedLead] = useState(null);
+  const [showLeadModal, setShowLeadModal] = useState(false);
 
   useEffect(() => {
     // Sample leads assigned to current user
@@ -549,6 +552,10 @@ const ProfessionalMyLeads = ({ darkMode, crmData, user }) => {
                 
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <button
+                    onClick={() => {
+                      setSelectedLead(lead);
+                      setShowLeadModal(true);
+                    }}
                     style={{
                       padding: '0.5rem',
                       background: darkMode ? '#374151' : '#f3f4f6',
@@ -605,6 +612,301 @@ const ProfessionalMyLeads = ({ darkMode, crmData, user }) => {
               : 'No leads assigned to you yet'
             }
           </p>
+        </div>
+      )}
+      
+      {/* Lead Detail Modal with Activity Timeline */}
+      {showLeadModal && selectedLead && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '2rem'
+        }}>
+          <div style={{
+            background: darkMode ? '#1f2937' : 'white',
+            borderRadius: '16px',
+            width: '90%',
+            maxWidth: '900px',
+            maxHeight: '90vh',
+            overflow: 'auto'
+          }}>
+            <div style={{
+              padding: '1.5rem',
+              borderBottom: `1px solid ${darkMode ? '#374151' : '#e5e7eb'}`,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <h3 style={{
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: darkMode ? 'white' : '#1f2937',
+                margin: 0
+              }}>
+                Lead Details - {selectedLead.contactPerson}
+              </h3>
+              <button
+                onClick={() => setShowLeadModal(false)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  fontSize: '1.5rem',
+                  cursor: 'pointer',
+                  color: darkMode ? '#9ca3af' : '#6b7280'
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ padding: '1.5rem' }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '2rem',
+                marginBottom: '2rem'
+              }}>
+                {/* Lead Info */}
+                <div>
+                  <h4 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: darkMode ? 'white' : '#1f2937',
+                    marginBottom: '1rem'
+                  }}>
+                    Contact Information
+                  </h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Company</label>
+                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedLead.companyName}</p>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Email</label>
+                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedLead.email}</p>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Phone</label>
+                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedLead.phone}</p>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Industry</label>
+                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedLead.industry}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lead Status */}
+                <div>
+                  <h4 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: darkMode ? 'white' : '#1f2937',
+                    marginBottom: '1rem'
+                  }}>
+                    Lead Information
+                  </h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Estimated Value</label>
+                      <p style={{ fontWeight: '500', color: '#22c55e', margin: 0 }}>₹{selectedLead.estimatedValue?.toLocaleString() || '0'}</p>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Status</label>
+                      <span style={{
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '12px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600',
+                        textTransform: 'capitalize',
+                        ...getStatusColor(selectedLead.status)
+                      }}>
+                        {selectedLead.status}
+                      </span>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Priority</label>
+                      <span style={{
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '12px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600',
+                        textTransform: 'capitalize',
+                        ...getPriorityColor(selectedLead.priority)
+                      }}>
+                        {selectedLead.priority}
+                      </span>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Created Date</label>
+                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>
+                        {new Date(selectedLead.createdDate).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notes Section */}
+              <div style={{ marginBottom: '2rem' }}>
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: '600',
+                  color: darkMode ? 'white' : '#1f2937',
+                  marginBottom: '1rem'
+                }}>
+                  Notes
+                </h4>
+                <div style={{
+                  background: darkMode ? '#374151' : '#f9fafb',
+                  padding: '1rem',
+                  borderRadius: '8px',
+                  border: `1px solid ${darkMode ? '#4b5563' : '#e5e7eb'}`
+                }}>
+                  <p style={{
+                    color: darkMode ? '#d1d5db' : '#374151',
+                    margin: 0,
+                    lineHeight: '1.6'
+                  }}>
+                    {selectedLead.notes || 'No notes available'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Activity Timeline */}
+              <div>
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: '600',
+                  color: darkMode ? 'white' : '#1f2937',
+                  marginBottom: '1rem'
+                }}>
+                  Activity Timeline
+                </h4>
+                <div style={{
+                  background: darkMode ? '#374151' : '#f9fafb',
+                  padding: '1rem',
+                  borderRadius: '8px',
+                  border: `1px solid ${darkMode ? '#4b5563' : '#e5e7eb'}`
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    marginBottom: '0.75rem'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      background: '#22c55e',
+                      borderRadius: '50%'
+                    }} />
+                    <div>
+                      <p style={{
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                        color: darkMode ? 'white' : '#1f2937',
+                        margin: 0
+                      }}>
+                        Lead created
+                      </p>
+                      <p style={{
+                        fontSize: '0.75rem',
+                        color: darkMode ? '#9ca3af' : '#6b7280',
+                        margin: 0
+                      }}>
+                        {new Date(selectedLead.createdDate).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                  {selectedLead.lastContact && (
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}>
+                      <div style={{
+                        width: '8px',
+                        height: '8px',
+                        background: '#3b82f6',
+                        borderRadius: '50%'
+                      }} />
+                      <div>
+                        <p style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '500',
+                          color: darkMode ? 'white' : '#1f2937',
+                          margin: 0
+                        }}>
+                          Last contacted
+                        </p>
+                        <p style={{
+                          fontSize: '0.75rem',
+                          color: darkMode ? '#9ca3af' : '#6b7280',
+                          margin: 0
+                        }}>
+                          {new Date(selectedLead.lastContact).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                marginTop: '2rem',
+                justifyContent: 'flex-end'
+              }}>
+                <button
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    background: '#3b82f6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontSize: '0.875rem',
+                    fontWeight: '500'
+                  }}
+                >
+                  <MessageCircle size={16} />
+                  Contact Lead
+                </button>
+                <button
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    background: 'linear-gradient(135deg, #22c55e, #4ade80)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontSize: '0.875rem',
+                    fontWeight: '500'
+                  }}
+                >
+                  <Edit size={16} />
+                  Edit Lead
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

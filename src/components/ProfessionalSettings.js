@@ -12,8 +12,10 @@ import {
   Save,
   Eye,
   EyeOff,
-  Check
+  Check,
+  Server
 } from 'lucide-react';
+import ApiTestPage from './ApiTestPage';
 import { showToast } from './ToastNotification';
 
 const ProfessionalSettings = ({ darkMode, toggleDarkMode, currentUser }) => {
@@ -77,7 +79,9 @@ const ProfessionalSettings = ({ darkMode, toggleDarkMode, currentUser }) => {
     { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'security', label: 'Security', icon: Shield },
     { id: 'preferences', label: 'Preferences', icon: Palette },
-    { id: 'system', label: 'System', icon: Database }
+    { id: 'system', label: 'System', icon: Database },
+    { id: 'api', label: 'API Connection', icon: Server },
+    { id: 'api-test', label: 'API Testing', icon: Server }
   ];
 
   const containerStyle = {
@@ -787,6 +791,84 @@ const ProfessionalSettings = ({ darkMode, toggleDarkMode, currentUser }) => {
                 <Database size={16} />
                 Update System Settings
               </button>
+            </div>
+          )}
+          
+          {/* API Connection */}
+          {activeTab === 'api' && (
+            <div>
+              <h2 style={{
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: darkMode ? 'white' : '#1f2937',
+                marginBottom: '1.5rem'
+              }}>
+                API Connection
+              </h2>
+              
+              <div style={{
+                background: darkMode ? '#374151' : '#f9fafb',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                textAlign: 'center'
+              }}>
+                <Server size={48} style={{ color: darkMode ? '#9ca3af' : '#6b7280', marginBottom: '1rem' }} />
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: '600',
+                  color: darkMode ? 'white' : '#1f2937',
+                  marginBottom: '0.5rem'
+                }}>
+                  API Connection Status
+                </h3>
+                <p style={{
+                  color: darkMode ? '#9ca3af' : '#6b7280',
+                  marginBottom: '1rem'
+                }}>
+                  Test your API connection and view status
+                </p>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '1rem'
+                }}>
+                  <div style={{
+                    width: '8px',
+                    height: '8px',
+                    background: '#22c55e',
+                    borderRadius: '50%'
+                  }} />
+                  <span style={{
+                    color: '#22c55e',
+                    fontWeight: '600'
+                  }}>
+                    Connected
+                  </span>
+                </div>
+                <button
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    background: 'linear-gradient(135deg, #3b82f6, #60a5fa)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '0.875rem',
+                    fontWeight: '600'
+                  }}
+                >
+                  Test Connection
+                </button>
+              </div>
+            </div>
+          )}
+          
+          {/* API Testing */}
+          {activeTab === 'api-test' && (
+            <div>
+              <ApiTestPage darkMode={darkMode} />
             </div>
           )}
         </div>

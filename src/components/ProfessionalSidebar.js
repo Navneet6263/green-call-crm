@@ -25,7 +25,8 @@ import {
   Building,
   Activity,
   Shield,
-  Briefcase
+  Briefcase,
+  Server
 } from 'lucide-react';
 
 const ProfessionalSidebar = ({ activeView, setActiveView, collapsed, setCollapsed, userRole, darkMode }) => {
@@ -81,18 +82,15 @@ const ProfessionalSidebar = ({ activeView, setActiveView, collapsed, setCollapse
         { id: 'documents', icon: FileText, label: 'Documents', color: '#3b82f6' }
       ]
     },
-    {
-      title: 'HR Management',
-      items: [
-        { id: 'hr-attendance', icon: Clock, label: 'HR Attendance', color: '#22c55e', superAdminOnly: true },
-        { id: 'bulk-attendance', icon: Users, label: 'Bulk Attendance', color: '#ef4444', superAdminOnly: true },
-        { id: 'salary-management', icon: DollarSign, label: 'Salary Management', color: '#f59e0b', superAdminOnly: true }
-      ]
-    },
+
     {
       title: 'System',
       items: [
-        { id: 'settings', icon: Settings, label: 'Settings', color: '#6b7280' }
+        { id: 'billing', icon: DollarSign, label: 'Billing & Payments', color: '#22c55e' },
+        { id: 'settings', icon: Settings, label: 'Settings', color: '#6b7280' },
+        { id: 'api-test', icon: Server, label: 'API Testing', color: '#3b82f6' },
+        { id: 'support', icon: MessageCircle, label: 'Support Center', color: '#22c55e' },
+        { id: 'support-admin', icon: MessageCircle, label: 'Support Management', color: '#ef4444', adminOnly: true }
       ]
     }
   ];

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { 
   Users, 
   Plus, 
@@ -456,7 +457,7 @@ const CustomerManagement = ({ darkMode, crmData, userRole }) => {
         </div>
       )}
 
-      {/* Customer Detail Modal */}
+      {/* Customer 360 View Modal */}
       {showCustomerModal && selectedCustomer && (
         <div style={{
           position: 'fixed',
@@ -492,7 +493,7 @@ const CustomerManagement = ({ darkMode, crmData, userRole }) => {
                 color: darkMode ? 'white' : '#1f2937',
                 margin: 0
               }}>
-                Customer Details - {selectedCustomer.name}
+                Customer 360° View
               </h3>
               <button
                 onClick={() => setShowCustomerModal(false)}
@@ -509,156 +510,104 @@ const CustomerManagement = ({ darkMode, crmData, userRole }) => {
             </div>
 
             <div style={{ padding: '1.5rem' }}>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '2rem'
-              }}>
-                {/* Customer Info */}
-                <div>
-                  <h4 style={{
-                    fontSize: '1.125rem',
-                    fontWeight: '600',
-                    color: darkMode ? 'white' : '#1f2937',
-                    marginBottom: '1rem'
-                  }}>
-                    Contact Information
-                  </h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Company</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedCustomer.company}</p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Email</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedCustomer.email}</p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Phone</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedCustomer.phone}</p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Industry</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedCustomer.industry}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Business Info */}
-                <div>
-                  <h4 style={{
-                    fontSize: '1.125rem',
-                    fontWeight: '600',
-                    color: darkMode ? 'white' : '#1f2937',
-                    marginBottom: '1rem'
-                  }}>
-                    Business Information
-                  </h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Total Value</label>
-                      <p style={{ fontWeight: '500', color: '#22c55e', margin: 0 }}>₹{selectedCustomer.totalValue?.toLocaleString() || '0'}</p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Join Date</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>
-                        {new Date(selectedCustomer.joinDate).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Account Manager</label>
-                      <p style={{ fontWeight: '500', color: darkMode ? 'white' : '#1f2937', margin: 0 }}>{selectedCustomer.accountManager}</p>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.875rem', color: darkMode ? '#9ca3af' : '#6b7280' }}>Status</label>
-                      <span style={{
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: '12px',
-                        fontSize: '0.75rem',
-                        fontWeight: '600',
-                        textTransform: 'capitalize',
-                        ...getStatusColor(selectedCustomer.status)
-                      }}>
-                        {selectedCustomer.status}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Notes Section */}
-              <div style={{ marginTop: '2rem' }}>
+              <div style={{ textAlign: 'center' }}>
                 <h4 style={{
-                  fontSize: '1.125rem',
+                  fontSize: '1.25rem',
                   fontWeight: '600',
                   color: darkMode ? 'white' : '#1f2937',
                   marginBottom: '1rem'
                 }}>
-                  Notes
+                  {selectedCustomer.name}
                 </h4>
-                <div style={{
-                  background: darkMode ? '#374151' : '#f9fafb',
-                  padding: '1rem',
-                  borderRadius: '8px',
-                  border: `1px solid ${darkMode ? '#4b5563' : '#e5e7eb'}`
+                <p style={{
+                  color: darkMode ? '#9ca3af' : '#6b7280',
+                  marginBottom: '2rem'
                 }}>
-                  <p style={{
-                    color: darkMode ? '#d1d5db' : '#374151',
-                    margin: 0,
-                    lineHeight: '1.6'
+                  {selectedCustomer.company}
+                </p>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    padding: '1rem',
+                    background: darkMode ? '#374151' : '#f9fafb',
+                    borderRadius: '8px'
                   }}>
-                    {selectedCustomer.notes || 'No notes available'}
-                  </p>
+                    <div style={{
+                      fontSize: '0.875rem',
+                      color: darkMode ? '#9ca3af' : '#6b7280',
+                      marginBottom: '0.5rem'
+                    }}>
+                      Email
+                    </div>
+                    <div style={{
+                      fontWeight: '600',
+                      color: darkMode ? 'white' : '#1f2937'
+                    }}>
+                      {selectedCustomer.email}
+                    </div>
+                  </div>
+                  <div style={{
+                    padding: '1rem',
+                    background: darkMode ? '#374151' : '#f9fafb',
+                    borderRadius: '8px'
+                  }}>
+                    <div style={{
+                      fontSize: '0.875rem',
+                      color: darkMode ? '#9ca3af' : '#6b7280',
+                      marginBottom: '0.5rem'
+                    }}>
+                      Phone
+                    </div>
+                    <div style={{
+                      fontWeight: '600',
+                      color: darkMode ? 'white' : '#1f2937'
+                    }}>
+                      {selectedCustomer.phone}
+                    </div>
+                  </div>
+                  <div style={{
+                    padding: '1rem',
+                    background: darkMode ? '#374151' : '#f9fafb',
+                    borderRadius: '8px'
+                  }}>
+                    <div style={{
+                      fontSize: '0.875rem',
+                      color: darkMode ? '#9ca3af' : '#6b7280',
+                      marginBottom: '0.5rem'
+                    }}>
+                      Status
+                    </div>
+                    <div style={{
+                      fontWeight: '600',
+                      color: darkMode ? 'white' : '#1f2937',
+                      textTransform: 'capitalize'
+                    }}>
+                      {selectedCustomer.status}
+                    </div>
+                  </div>
+                  <div style={{
+                    padding: '1rem',
+                    background: darkMode ? '#374151' : '#f9fafb',
+                    borderRadius: '8px'
+                  }}>
+                    <div style={{
+                      fontSize: '0.875rem',
+                      color: darkMode ? '#9ca3af' : '#6b7280',
+                      marginBottom: '0.5rem'
+                    }}>
+                      Total Value
+                    </div>
+                    <div style={{
+                      fontWeight: '600',
+                      color: darkMode ? 'white' : '#1f2937'
+                    }}>
+                      ₹{selectedCustomer.totalValue?.toLocaleString() || '0'}
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{
-                display: 'flex',
-                gap: '1rem',
-                marginTop: '2rem',
-                justifyContent: 'flex-end'
-              }}>
-                {(userRole === 'super-admin' || userRole === 'admin') && (
-                  <button
-                    style={{
-                      padding: '0.75rem 1.5rem',
-                      background: darkMode ? '#374151' : '#f3f4f6',
-                      color: darkMode ? '#d1d5db' : '#374151',
-                      border: 'none',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      fontSize: '0.875rem',
-                      fontWeight: '500'
-                    }}
-                  >
-                    <Upload size={16} />
-                    Upload Document
-                  </button>
-                )}
-                {(userRole === 'super-admin' || userRole === 'admin' || userRole === 'sales-manager') && (
-                  <button
-                    style={{
-                      padding: '0.75rem 1.5rem',
-                      background: 'linear-gradient(135deg, #22c55e, #4ade80)',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      fontSize: '0.875rem',
-                      fontWeight: '500'
-                    }}
-                  >
-                    <Edit size={16} />
-                    Edit Customer
-                  </button>
-                )}
               </div>
             </div>
           </div>

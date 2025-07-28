@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Target, Mail, Phone, Edit, Eye, CheckCircle, Calendar, TrendingUp, User, DollarSign, Clock, Activity } from 'lucide-react';
-import { apiService } from '../services/apiService';
+import apiService from '../services/apiService';
 
 const LeadTracker = ({ crmData, updateCrmData, user, darkMode }) => {
   const [selectedLead, setSelectedLead] = useState(null);

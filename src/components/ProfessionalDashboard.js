@@ -14,7 +14,8 @@ import {
   Plus,
   ArrowRight,
   Activity,
-  Zap
+  Zap,
+  Server
 } from 'lucide-react';
 
 const ProfessionalDashboard = ({ darkMode, crmData, user, setActiveView }) => {
@@ -469,31 +470,31 @@ const ProfessionalDashboard = ({ darkMode, crmData, user, setActiveView }) => {
           {[
             {
               title: 'Add New Lead',
-              description: 'Create a new lead opportunity',
+              description: 'Create a new lead entry',
               icon: Plus,
               color: '#22c55e',
               action: () => setActiveView('add-enquiry')
             },
             {
-              title: 'View My Leads',
-              description: 'Check your assigned leads',
-              icon: Users,
+              title: 'View All Leads',
+              description: 'Browse your lead pipeline',
+              icon: Target,
               color: '#3b82f6',
-              action: () => setActiveView('my-leads')
+              action: () => setActiveView('leads')
             },
             {
-              title: 'Analytics',
-              description: 'View performance metrics',
+              title: 'Analytics Dashboard',
+              description: 'View detailed reports',
               icon: BarChart3,
               color: '#8b5cf6',
               action: () => setActiveView('analytics')
             },
             {
-              title: 'AI Assistant',
-              description: 'Get AI-powered insights',
-              icon: Activity,
+              title: 'API Testing',
+              description: 'Test system integrations',
+              icon: Server,
               color: '#f59e0b',
-              action: () => setActiveView('ai-assistant')
+              action: () => setActiveView('api-test')
             }
           ].map((action, index) => {
             const Icon = action.icon;
@@ -513,10 +514,14 @@ const ProfessionalDashboard = ({ darkMode, crmData, user, setActiveView }) => {
                 onMouseEnter={(e) => {
                   e.target.style.borderColor = action.color;
                   e.target.style.background = darkMode ? '#4b5563' : '#f3f4f6';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = `0 8px 25px ${action.color}20`;
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.borderColor = darkMode ? '#4b5563' : '#e5e7eb';
                   e.target.style.background = darkMode ? '#374151' : '#f9fafb';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = 'none';
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

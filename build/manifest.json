@@ -1,0 +1,41 @@
+{
+  "short_name": "Green Call CRM",
+  "name": "Green Call CRM - Professional Customer Management",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik05NiA0OEM3NC4zNCA0OCA1NyA2NS4zNCA1NyA4N0M1NyAxMDguNjYgNzQuMzQgMTI2IDk2IDEyNkMxMTcuNjYgMTI2IDEzNSAxMDguNjYgMTM1IDg3QzEzNSA2NS4zNCAxMTcuNjYgNDggOTYgNDhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTYgNjZDODUuNTA2IDY2IDc3IDc0LjUwNiA3NyA4NUM3NyA5NS40OTQgODUuNTA2IDEwNCA5NiAxMDRDMTA2LjQ5NCAxMDQgMTE1IDk1LjQ5NCAxMTUgODVDMTE1IDc0LjUwNiAxMDYuNDk0IDY2IDk2IDY2WiIgZmlsbD0iIzIyYzU1ZSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDBfbGluZWFyXzFfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMTkyIiB5Mj0iMTkyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMyMmM1NWUiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGFkZTgwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik0yNTYgMTI4QzE5OC42OTIgMTI4IDE1MiAxNzQuNjkyIDE1MiAyMzJDMTUyIDI4OS4zMDggMTk4LjY5MiAzMzYgMjU2IDMzNkMzMTMuMzA4IDMzNiAzNjAgMjg5LjMwOCAzNjAgMjMyQzM2MCAxNzQuNjkyIDMxMy4zMDggMTI4IDI1NiAxMjhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjU2IDE3NkMyMjguMTM0IDE3NiAyMDYgMTk4LjEzNCAyMDYgMjI2QzIwNiAyNTMuODY2IDIyOC4xMzQgMjc2IDI1NiAyNzZDMjgzLjg2NiAyNzYgMzA2IDI1My44NjYgMzA2IDIyNkMzMDYgMTk4LjEzNCAyODMuODY2IDE3NiAyNTYgMTc2WiIgZmlsbD0iIzIyYzU1ZSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDBfbGluZWFyXzFfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iNTEyIiB5Mj0iNTEyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMyMmM1NWUiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGFkZTgwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#22c55e",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity"],
+  "description": "Professional CRM system for managing leads, customers, and sales pipeline",
+  "lang": "en",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View CRM dashboard",
+      "url": "/?view=dashboard",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Add Lead",
+      "short_name": "Add Lead",
+      "description": "Create new lead",
+      "url": "/?view=add-lead",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}
