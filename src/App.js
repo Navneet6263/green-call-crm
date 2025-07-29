@@ -136,6 +136,7 @@ const AppContent = () => {
   useEffect(() => {
     // Always start with landing page - no auto-login
     const token = localStorage.getItem('authToken');
+    if (token) {
    // Clear any existing tokens on page load
       localStorage.removeItem('authToken');
     }
