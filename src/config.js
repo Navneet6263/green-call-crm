@@ -15,7 +15,7 @@ const config = {
   
   // Feature Flags
   features: {
-    useMockData: process.env.REACT_APP_USE_MOCK_DATA === 'true' || isDevelopment, // Only in development by default
+    useMockData: true, // Always use mock data for demo
     enableAnalytics: process.env.REACT_APP_ENABLE_ANALYTICS !== 'false', // Default true
     enableNotifications: process.env.REACT_APP_ENABLE_NOTIFICATIONS !== 'false', // Default true
     debugMode: isDevelopment
